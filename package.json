@@ -1,0 +1,42 @@
+{
+  "name": "lodash-monad",
+  "version": "1.0.0",
+  "description": "Useful Functional Monades to use together with lodash library",
+  "main": "src/index.ts",
+  "module": "dist/lodash-monad.esm.js",
+  "types": "dist/lodash-monad.d.ts",
+  "scripts": {
+    "build": "npx rollup -c",
+    "build:watch": "npx rollup -c --watch",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "toc": "npx markdown-toc README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paullasarev/lodash-monad.git"
+  },
+  "keywords": [
+    "lodash",
+    "monad",
+    "functional"
+  ],
+  "author": "paullasarev@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paullasarev/lodash-monad/issues"
+  },
+  "homepage": "https://github.com/paullasarev/lodash-monad#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.7",
+    "@rollup/plugin-typescript": "^2.0.2",
+    "@types/jest": "^24.0.25",
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
+    "rollup-plugin-dts": "^1.1.13",
+    "rollup-plugin-terser": "^5.1.3",
+    "ts-jest": "^24.2.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.4"
+  }
+}
