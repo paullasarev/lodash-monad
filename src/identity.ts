@@ -16,7 +16,7 @@ export class Identity<T> implements Comonad<T> {
   }
 
   static of<T>(value: T) {
-    return new Identity(value);
+    return new Identity<T>(value);
   }
 
   extend(f: (w: Identity<T>) => T): Identity<T> {
@@ -27,8 +27,12 @@ export class Identity<T> implements Comonad<T> {
     return this.value;
   }
 
-  map(func: Func<T,T>): Identity<T> {
+  map<U>(func: Func<T,U>): Identity<U> {
     return Identity.of(func(this.value));
+  }
+
+  ap<U>(b: Identity<Func<T,U>>): Identity<U> {
+    return Identity.of(b.value(this.value));
   }
 
   chain<U, R extends Monad<U>>(func: Func<T, R>): R {
