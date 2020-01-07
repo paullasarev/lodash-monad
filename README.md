@@ -15,8 +15,22 @@ This library implements some useful *Monad* in a quite mimimalistic way and is d
 > npm install --save-dev lodash-monad
 ``` 
 
-## Usage
- 
+## Concepts
+
+### Fantasy land
+
+https://github.com/fantasyland/fantasy-land
+
+### Functor
+
+### Applicable
+
+### Monad
+
+### Comonad
+
+## Monades
+
 ### Identity
 
 ### Maybe

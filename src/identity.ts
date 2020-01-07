@@ -1,38 +1,36 @@
-import { MapFunc, ChainFunc, Monad } from "./types";
+import { MapFunc, ChainFunc, Comonad } from "./types";
 
-export class IdentityMonad<T> implements Monad {
+export class Identity<T> implements Comonad<T> {
   private value: T;
+
+  // to keep typed access to static members via instance.constructor.prop
+  // see https://github.com/Microsoft/TypeScript/issues/3841
+  ['constructor']: typeof Identity;
 
   constructor (value: T) {
     this.value = value;
   }
 
   inspect() {
-    return `Identity(${this.value})`;
+    return `Identity.of(${this.value})`;
   }
 
-  // due to TS limitations it's impossible to template static method
-  // static of(value: T) {
-  //   return new IdentityMonad(value);
-  // }
+  static of<T>(value: T) {
+    return new Identity(value);
+  }
 
-  join(): T {
+  extract(): T {
     return this.value;
   }
 
-  map(func: MapFunc<T,T>): IdentityMonad<T> {
-    return Identity(func(this.value))
+  map(func: MapFunc<T>): Identity<T> {
+    return Identity.of(func(this.value));
   }
 
-  chain(func: ChainFunc<T>) {
+  chain<U>(func: ChainFunc<T, Comonad<U>>): Comonad<U> {
     return func(this.value);
   }
 }
 
-export function Identity<T>(x: T): IdentityMonad<T> {
-  return new IdentityMonad(x);
-}
-
-Identity.prototype = IdentityMonad.prototype;
 
 
