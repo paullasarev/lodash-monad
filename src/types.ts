@@ -9,13 +9,12 @@ export interface Apply<T> extends Functor<T> {
   ap<U>(b: Functor<Func<T,U>>): Functor<U>;
 }
 
-export interface Applicative<T> extends Apply<T> {
-  of<T>(value: T): Applicative<T>; 
-}
 
 export interface Monad<T> extends Functor<T>, Apply<T> {
   chain<U, R extends Monad<U>>(func: Func<T, R>): R;
 }
+
+export type MonadOf<T, R extends Monad<T>> = (value: T) => R;
 
 export interface Extend<T> extends Functor<T> {
   extend(f: (w: Extend<T>) => T): Extend<T>;

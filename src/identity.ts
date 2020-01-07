@@ -6,7 +6,6 @@ export class Identity<T> implements Comonad<T> {
   // to keep typed access to static members via instance.constructor.prop
   // see https://github.com/Microsoft/TypeScript/issues/3841
   // ['constructor']: typeof Identity;
-  // ['constructor']!: typeof Identity;
 
   constructor (value: T) {
     this.value = value;

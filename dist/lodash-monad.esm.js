@@ -2,7 +2,6 @@ var Identity = /** @class */ (function () {
     // to keep typed access to static members via instance.constructor.prop
     // see https://github.com/Microsoft/TypeScript/issues/3841
     // ['constructor']: typeof Identity;
-    // ['constructor']!: typeof Identity;
     function Identity(value) {
         this.value = value;
     }
