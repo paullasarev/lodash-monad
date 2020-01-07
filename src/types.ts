@@ -16,7 +16,7 @@ export interface Extract<T> {
 export type ChainFunc<T, R> = (arg: T) => R;
 
 export interface Monad<T> extends Functor<T> {
-  chain<U>(func: ChainFunc<T, Monad<U>>): Monad<U>;
+  chain<U, R extends Monad<U>>(func: ChainFunc<T, R>): R;
 }
 
 export interface Comonad<T> extends Monad<T>, Extract<T> {
