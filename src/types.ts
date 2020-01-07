@@ -9,7 +9,7 @@ export interface Apply<T> extends Functor<T> {
   ap<U>(b: Functor<Func<T,U>>): Functor<U>;
 }
 
-export interface Applicative<T> {
+export interface Applicative<T> extends Apply<T> {
   of<T>(value: T): Applicative<T>; 
 }
 

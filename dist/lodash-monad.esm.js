@@ -1,29 +1,34 @@
-var IdentityMonad = /** @class */ (function () {
-    function IdentityMonad(value) {
+var Identity = /** @class */ (function () {
+    // to keep typed access to static members via instance.constructor.prop
+    // see https://github.com/Microsoft/TypeScript/issues/3841
+    // ['constructor']: typeof Identity;
+    // ['constructor']!: typeof Identity;
+    function Identity(value) {
         this.value = value;
     }
-    IdentityMonad.prototype.inspect = function () {
-        return "Identity(" + this.value + ")";
+    Identity.prototype.inspect = function () {
+        return "Identity.of(" + this.value + ")";
     };
-    // due to TS limitations it's impossible to template static method
-    // static of(value: T) {
-    //   return new IdentityMonad(value);
-    // }
-    IdentityMonad.prototype.join = function () {
+    Identity.of = function (value) {
+        return new Identity(value);
+    };
+    Identity.prototype.extend = function (f) {
+        return Identity.of(f(this));
+    };
+    Identity.prototype.extract = function () {
         return this.value;
     };
-    IdentityMonad.prototype.map = function (func) {
-        return Identity(func(this.value));
+    Identity.prototype.map = function (func) {
+        return Identity.of(func(this.value));
     };
-    IdentityMonad.prototype.chain = function (func) {
+    Identity.prototype.ap = function (b) {
+        return Identity.of(b.value(this.value));
+    };
+    Identity.prototype.chain = function (func) {
         return func(this.value);
     };
-    return IdentityMonad;
+    return Identity;
 }());
-function Identity(x) {
-    return new IdentityMonad(x);
-}
-Identity.prototype = IdentityMonad.prototype;
 
 var Just = /** @class */ (function () {
     function Just(value) {
@@ -35,4 +40,4 @@ var Just = /** @class */ (function () {
     return Just;
 }());
 
-export { Identity, IdentityMonad, Just };
+export { Identity, Just };

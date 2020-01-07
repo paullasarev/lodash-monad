@@ -31,6 +31,8 @@ export default [
       file: 'dist/lodash-monad.d.ts',
       format: 'es'
     },
-    plugins: [dts()],
+    plugins: [dts({
+      noEmitOnError: false,
+    })],
   }
 ];
