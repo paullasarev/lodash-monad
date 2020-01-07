@@ -1,4 +1,4 @@
-import { MapFunc, ChainFunc, Comonad, Monad } from "./types";
+import { Func, Comonad, Monad } from "./types";
 
 export class Identity<T> implements Comonad<T> {
   private value: T;
@@ -27,11 +27,11 @@ export class Identity<T> implements Comonad<T> {
     return this.value;
   }
 
-  map(func: MapFunc<T>): Identity<T> {
+  map(func: Func<T,T>): Identity<T> {
     return Identity.of(func(this.value));
   }
 
-  chain<U, R extends Monad<U>>(func: ChainFunc<T, R>): R {
+  chain<U, R extends Monad<U>>(func: Func<T, R>): R {
     return func(this.value);
   }
 }
