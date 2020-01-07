@@ -19,5 +19,5 @@ export interface Monad<T> extends Functor<T> {
   chain<U, R extends Monad<U>>(func: ChainFunc<T, R>): R;
 }
 
-export interface Comonad<T> extends Monad<T>, Extract<T> {
+export interface Comonad<T> extends Monad<T>, Extend<T>, Extract<T> {
 }

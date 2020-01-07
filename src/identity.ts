@@ -19,6 +19,10 @@ export class Identity<T> implements Comonad<T> {
     return new Identity(value);
   }
 
+  extend(f: (w: Identity<T>) => T): Identity<T> {
+    return Identity.of(f(this));
+  }
+
   extract(): T {
     return this.value;
   }

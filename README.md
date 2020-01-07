@@ -19,7 +19,11 @@ This library implements some useful *Monad* in a quite mimimalistic way and is d
 
 ### Fantasy land
 
-https://github.com/fantasyland/fantasy-land
+Is it [Fantasy Land](https://github.com/fantasyland/fantasy-land) conformant?
+
+Yes, it is! Specifications are in accrodance with the Fantasy Land concepts.
+
+!["Fantasy land logo"](https://raw.github.com/fantasyland/fantasy-land/master/logo.png)
 
 ### Functor
 
