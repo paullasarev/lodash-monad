@@ -2,8 +2,9 @@ import { Identity } from './identity';
 import { Func } from './types';
 
 describe('Identity', () => {
+  // types tests to fulfill fantasy-land laws, see https://github.com/fantasyland/fantasy-land
 
-  describe('map', () => {
+  describe('functor', () => {
     it('should return new instance', () => {
       const m = Identity.of(1);
       const result = m.map(x=>x+1);
@@ -64,7 +65,7 @@ describe('Identity', () => {
     });
   });
 
-  describe('ap', () => {
+  describe('apply', () => {
     it('should apply applicative functor', () => {
       const a = Identity.of(1);
       const b = Identity.of(1).map(a => (b: number) => a + b);
@@ -72,7 +73,6 @@ describe('Identity', () => {
       expect(result).toEqual(Identity.of(2));
     });
     it('should apply composition', () => {
-      // https://github.com/fantasyland/fantasy-land#apply
       // v['fantasy-land/ap'](u['fantasy-land/ap'](a['fantasy-land/map'](f => g => x => f(g(x)))))
       // is equivalent to
       // v['fantasy-land/ap'](u)['fantasy-land/ap'](a)
@@ -95,6 +95,7 @@ describe('Identity', () => {
     it('of should be accessible via type representative', () => {
       const result = Identity.of(1);
       expect(result.type().of).toBeInstanceOf(Function);
+      expect(result.type().of).toBe(Identity.of);
     });
     it('should apply identity', () => {
       // v['fantasy-land/ap'](A['fantasy-land/of'](x => x)) is equivalent to v (identity)
