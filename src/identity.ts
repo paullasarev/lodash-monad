@@ -3,9 +3,7 @@ import { Func, Comonad, Monad } from "./types";
 export class Identity<T> implements Comonad<T> {
   private value: T;
 
-  // to keep typed access to static members via instance.constructor.prop
-  // see https://github.com/Microsoft/TypeScript/issues/3841
-  // ['constructor']: typeof Identity;
+  type() { return Identity };
 
   constructor (value: T) {
     this.value = value;
@@ -15,28 +13,34 @@ export class Identity<T> implements Comonad<T> {
     return `Identity.of(${this.value})`;
   }
 
+  // Applicative
   static of<T>(value: T) {
     return new Identity<T>(value);
   }
 
-  extend(f: (w: Identity<T>) => T): Identity<T> {
-    return Identity.of(f(this));
-  }
-
-  extract(): T {
-    return this.value;
-  }
-
+  // Functor
   map<U>(func: Func<T,U>): Identity<U> {
     return Identity.of(func(this.value));
   }
 
+  // Apply
   ap<U>(b: Identity<Func<T,U>>): Identity<U> {
     return Identity.of(b.value(this.value));
   }
 
-  chain<U, R extends Monad<U>>(func: Func<T, R>): R {
+  // Chain
+  chain<R>(func: Func<T, R>): R {
     return func(this.value);
+  }
+
+  // Extend
+  extend(f: (w: Identity<T>) => T): Identity<T> {
+    return Identity.of(f(this));
+  }
+
+  // Comonad
+  extract(): T {
+    return this.value;
   }
 }
 

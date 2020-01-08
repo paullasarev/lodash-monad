@@ -25,6 +25,10 @@ Yes, it is! Specifications are in accrodance with the Fantasy Land concepts.
 
 !["Fantasy land logo"](https://raw.github.com/fantasyland/fantasy-land/master/logo.png)
 
+See also:
+* http://www.tomharding.me/fantasy-land/
+* https://github.com/fantasyland/fantasy-land
+
 ### Functor
 
 ### Applicable
