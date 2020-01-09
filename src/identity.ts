@@ -1,7 +1,7 @@
-import { Func, Comonad, Monad } from "./types";
+import { Func, Comonad } from './types';
 
 export class Identity<T> implements Comonad<T> {
-  private value: T;
+  protected readonly value: T;
 
   type() { return Identity };
 

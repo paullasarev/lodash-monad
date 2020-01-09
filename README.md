@@ -48,3 +48,5 @@ See also:
 ### Reader
 
 ### List
+
+### Effects

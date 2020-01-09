@@ -22,7 +22,7 @@ interface Comonad<T> extends Monad<T>, Extend<T> {
 }
 
 declare class Identity<T> implements Comonad<T> {
-    private value;
+    protected readonly value: T;
     type(): typeof Identity;
     constructor(value: T);
     inspect(): string;
@@ -34,10 +34,14 @@ declare class Identity<T> implements Comonad<T> {
     extract(): T;
 }
 
-declare class Just {
-    private value;
-    constructor(value: any);
-    static of(value: any): Just;
+declare class Maybe<T> extends Identity<T> {
+    constructor(pValue: T);
+    static of<T>(value: T): Maybe<T>;
+    map<U>(func: Func<T, U>): Maybe<U>;
+    ap<U>(b: Maybe<Func<T, U>>): Maybe<U>;
+    extend(f: (w: Maybe<T>) => T): Maybe<T>;
+    get isNull(): boolean;
+    getOrElse(defValue?: T): T;
 }
 
-export { Applicable, ApplicableType, Apply, Comonad, Extend, Func, Functor, Identity, Just, Monad };
+export { Applicable, ApplicableType, Apply, Comonad, Extend, Func, Functor, Identity, Maybe, Monad };

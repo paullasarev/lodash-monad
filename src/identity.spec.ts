@@ -37,7 +37,7 @@ describe('Identity', () => {
   });
 
   describe('chain', () => {
-    it('should return new monad', () => {
+    it('should return new instance', () => {
       const m = Identity.of(1);
       const result = m.chain(Identity.of);
       expect(result).not.toBe(m);
