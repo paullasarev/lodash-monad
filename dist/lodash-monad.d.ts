@@ -45,4 +45,11 @@ declare class Maybe<T> extends Identity<T> {
     getOrElse(defValue?: T): T;
 }
 
-export { Applicable, ApplicableType, Apply, Comonad, Extend, Func, Functor, Identity, Maybe, Monad };
+declare class Either<T> extends Identity<T> {
+    protected error: Error | null;
+    constructor(value: T);
+    type(): typeof Either;
+    static of<T>(value: T): Either<T>;
+}
+
+export { Applicable, ApplicableType, Apply, Comonad, Either, Extend, Func, Functor, Identity, Maybe, Monad };

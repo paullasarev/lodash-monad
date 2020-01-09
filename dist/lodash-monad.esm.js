@@ -104,5 +104,21 @@ var Maybe = /** @class */ (function (_super) {
     };
     return Maybe;
 }(Identity));
+//# sourceMappingURL=maybe.js.map
 
-export { Identity, Maybe };
+var Either = /** @class */ (function (_super) {
+    __extends(Either, _super);
+    function Either(value) {
+        var _this = _super.call(this, value) || this;
+        _this.error = null;
+        return _this;
+    }
+    Either.prototype.type = function () { return Either; };
+    // Applicative
+    Either.of = function (value) {
+        return new Either(value);
+    };
+    return Either;
+}(Identity));
+
+export { Either, Identity, Maybe };
