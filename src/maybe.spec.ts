@@ -3,7 +3,7 @@ import { nullFunc } from './utils';
 
 describe('Maybe', () => {
   describe('of', () => {
-    it('should create a Just instance', () => {
+    it('should create a valid instance', () => {
       const result = Maybe.of(1);
       expect(result instanceof Maybe).toBeTruthy();
       expect(result.extract()).toBe(1);
