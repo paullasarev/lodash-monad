@@ -1,4 +1,4 @@
-import { Func, Monad } from './types';
+import { Func } from './types';
 import { Identity } from './identity';
 
 export class Maybe<T> extends Identity<T> {
