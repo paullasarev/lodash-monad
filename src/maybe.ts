@@ -8,6 +8,8 @@ export class Maybe<T> extends Identity<T> {
     super(value);
   }
 
+  type() { return Maybe };
+
   // Applicative
   static of<T>(value: T) {
     return new Maybe<T>(value);

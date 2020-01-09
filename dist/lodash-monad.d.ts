@@ -36,6 +36,7 @@ declare class Identity<T> implements Comonad<T> {
 
 declare class Maybe<T> extends Identity<T> {
     constructor(pValue: T);
+    type(): typeof Maybe;
     static of<T>(value: T): Maybe<T>;
     map<U>(func: Func<T, U>): Maybe<U>;
     ap<U>(b: Maybe<Func<T, U>>): Maybe<U>;

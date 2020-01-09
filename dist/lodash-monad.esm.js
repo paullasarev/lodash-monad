@@ -71,6 +71,7 @@ var Maybe = /** @class */ (function (_super) {
         _this = _super.call(this, value) || this;
         return _this;
     }
+    Maybe.prototype.type = function () { return Maybe; };
     // Applicative
     Maybe.of = function (value) {
         return new Maybe(value);

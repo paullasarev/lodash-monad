@@ -94,6 +94,7 @@ describe('Identity', () => {
     });
     it('of should be accessible via type representative', () => {
       const result = Identity.of(1);
+      expect(result.type()).toBe(Identity);
       expect(result.type().of).toBeInstanceOf(Function);
       expect(result.type().of).toBe(Identity.of);
     });

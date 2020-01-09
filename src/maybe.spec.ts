@@ -3,6 +3,12 @@ import { nullFunc } from './utils';
 
 describe('Maybe', () => {
   describe('of', () => {
+    it('of should be accessible via type representative', () => {
+      const result = Maybe.of(1);
+      expect(result.type()).toBe(Maybe);
+      expect(result.type().of).toBeInstanceOf(Function);
+      expect(result.type().of).toBe(Maybe.of);
+    });
     it('should create a valid instance', () => {
       const result = Maybe.of(1);
       expect(result instanceof Maybe).toBeTruthy();

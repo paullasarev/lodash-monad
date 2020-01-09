@@ -9,6 +9,8 @@ export class Either<T> extends Identity<T> {
     super(value);
   }
 
+  type() { return Either };
+
   // Applicative
   static of<T>(value: T) {
     return new Either<T>(value);
